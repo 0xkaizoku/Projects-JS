@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Color Changer</title>
+    <h1 id="title"> Background Color changer</h1>
+</head>
+<body>
+  
+    <div class = "canvas">
+
+     <span class="button" id="white"></span>
+     <span class="button" id="black"></span>
+     <span class="button" id="grey"></span>
+     <span class="button" id="yellow"></span>
+     <span class="button" id="red"></span>
+     <span class="button" id="blue"></span>
+     <span class="button" id="green"></span>
+    </div>
+   <div>
+    <h2 id="h2">Tap on box to change display background color</H1>
+   </div>
+<style>
+
+ html{
+    margin: 0px;
+ }
+
+ .button {
+    height: 100px;
+    width: 100px;
+    border: 1.5px solid black;
+    display: inline-block;
+ }
+
+ span{
+    display: block;
+ }
+ #white{
+    background: white;
+ }
+ #black {
+    background: black;
+ }
+ #yellow{
+    background: yellow;
+ }
+ #green {
+    background:green;
+ }
+ #red{
+    background: red;
+ }
+ #blue {
+    background:blue;
+ }
+ #grey {
+    background:grey
+ }
+
+
+</style>
+<script>
+
+let buttons = document.querySelectorAll(".button")
+let body = document.querySelector("body")
+
+buttons.forEach((button)=>{
+    console.log(button);
+    
+ button.addEventListener('click'(e)=>{
+    if(e.target.id === 'white'){
+        body.style.backgroundColor = 'white'
+        
+    })
+ })
+
+
+</script>
+</body>
+</html>
