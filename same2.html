@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Changer</title>
+</head>
+<body>
+    <h1>Click on color block :</h1>
+    <div class="canvas">
+     <span class = "buttons" id="white" "></span>
+     <span class = "buttons" id="grey" "></span>
+     <span class = "buttons" id="yellow" "></span>
+     <span class = "buttons" id="red" "></span>
+     <span class = "buttons" id="black" "></span>
+     <span class = "buttons" id="pink" "></span>
+     <span class = "buttons" id="orange" "></span>
+     <span class = "buttons" id="blue" "></span>
+     <h1>Choose any color to change to repsective background Color</h1>
+    </div>
+
+    <style>
+       .canvas{
+        margin: 0px;
+        text-align: center;
+       }
+     .buttons{
+        height: 100px;
+        width: 100px;
+        border: 2px solid black;
+        display: inline-block;
+        
+     }
+     body{
+        background-color: #ffacac;
+     }
+    #white{
+        background-color: white;
+    }
+    #black{
+        background-color: black;
+    }
+    #red{
+        background-color: red;
+    }
+    #green{
+        background-color:green;
+    }
+    
+    #orange{
+        background-color: orange;
+    }
+    
+    #pink{
+        background-color:pink;
+    }
+    #yellow{
+        background-color:yellow;
+    }
+    #blue{
+        background-color:blue;
+    }
+    #grey{
+        background-color:grey;
+    }
+    
+
+    </style>
+    <script>
+      
+      let buttons = document.querySelectorAll(".buttons")
+      let body = document.querySelector("body")
+
+    buttons.forEach((button)=>{
+        button.addEventListener('click',(e)=>{
+         if(e.target.id === 'grey'){
+            body.style.backgroundColor = 'grey'
+         }
+         if(e.target.id === 'white'){
+            body.style.backgroundColor = 'white'
+         }
+         if(e.target.id === 'red'){
+            body.style.backgroundColor = 'red'
+         }
+         if(e.target.id === 'black'){
+            body.style.backgroundColor = 'black'
+         }
+         if(e.target.id === 'yellow'){
+            body.style.backgroundColor = 'yellow'
+         }  
+         
+         if(e.target.id === 'blue'){
+            body.style.backgroundColor = 'blue'
+         }
+         if(e.target.id === 'pink'){
+            body.style.backgroundColor = 'pink'
+         }
+         if(e.target.id === 'orange'){
+            body.style.backgroundColor = 'orange'
+         }
+
+
+
+
+
+        })
+    })
+    </script>
+</body>
+</html>
