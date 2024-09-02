@@ -1,4 +1,4 @@
-To write a `README.md` for your HTML, CSS, and JavaScript project, you can follow this structure. The `README.md` serves as a guide to help others understand what your project does, how to use it, and how to contribute.
+<!-- To write a `README.md` for your HTML, CSS, and JavaScript project, you can follow this structure. The `README.md` serves as a guide to help others understand what your project does, how to use it, and how to contribute.
 
 Here’s an example `README.md` for your "Background Changer" project:
 
@@ -80,4 +80,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ### Additional Tips:
 - Replace `"your-username"` with your actual GitHub username if you have a repository for this project.
 - If you plan to host the project live (e.g., on GitHub Pages), you can add a link to the live demo in the "Demo" section.
-- If you have a screenshot or gif of your project, add it to the "Demo" section.
+- If you have a screenshot or gif of your project, add it to the "Demo" section. -->
