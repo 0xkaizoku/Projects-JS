@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background changer</title>
+</head>
+<body>
+    <div class="canvas">
+        <h1>Tap on color blocks to change UI Color</h1>
+     <span class="buttons" id="black"></span>
+     <span class="buttons" id="white"></span>
+     <span class="buttons" id="yellow"></span>
+     <span class="buttons" id="red"></span>
+     <span class="buttons" id="pink"></span>
+     <span class="buttons" id="green"></span>
+     <span class="buttons" id="orange"></span>
+     <span class="buttons" id="cyan"></span>
+ <h2>Choose Any Color to change background</h2>
+    </div>
+
+    <style>
+      body {
+        margin: 0px;
+        background-color: lavender;
+      }
+      .canvas{
+        height: 600px;
+        width: 600px;
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 20px;
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 10px;
+      }
+
+      .buttons{
+        height: 100px;
+        width: 200px;
+        border: 1.5px solid black;
+        display: inline-block;
+      }
+      #black{
+        background-color: black;
+      }
+      #white{
+        background-color: white;
+      }
+      #orange{
+        background-color:orange;
+      }
+      #red{
+        background-color: red;
+      }
+      #yellow{
+        background-color: yellow;
+      }
+      #green{
+        background-color: green;
+      }
+      #cyan{
+        background-color:cyan;
+      }
+      #pink{
+        background-color: pink;
+      }
+
+    </style>
+    <script>
+
+    let button = document.querySelectorAll('.buttons')
+    let body = document.querySelector('body')
+    let h1 = document.querySelector('h1')
+    let h2 = document.querySelector('h2')
+
+    button.forEach((buttons)=>{
+    buttons.addEventListener('click',(e)=>{
+       if(e.target.id === 'black'){
+        body.style.backgroundColor = 'black';
+        h1.style.color = 'white'
+        h2.style.color = 'white'
+    
+       }
+       if(e.target.id === 'cyan'){
+        body.style.backgroundColor = 'cyan'
+       }
+       if(e.target.id === 'red'){
+        body.style.backgroundColor = 'red'
+       }
+       if(e.target.id === 'green'){
+        body.style.backgroundColor = 'green'
+       }
+       if(e.target.id === 'yellow'){
+        body.style.backgroundColor = 'yellow'
+        h1.style.color = 'black'
+        h2.style.color = 'black'
+       }
+       if(e.target.id === 'orange'){
+        body.style.backgroundColor = 'orange'
+       }
+       if(e.target.id === 'pink'){
+        body.style.backgroundColor = 'pink'
+       }
+       if(e.target.id === 'white'){
+        body.style.backgroundColor = 'white'
+         h1.style.color = 'black'
+        h2.style.color = 'black'
+       }
+
+    })
+    })
+
+    </script>
+</body>
+</html>
