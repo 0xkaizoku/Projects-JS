@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+</head>
+<body>
+    <div class="container">
+
+ <h1>BMI Calculator</h1>
+<form>
+<p><label>Height in CM : </label><input type="text" id = "height"/></p>
+<p><label>Weight in KG : </label><input type="text" id = "weight"/></p>
+<button id = "button">Calculate</button>
+<br>
+<br>
+
+<div id = "result"></div>
+<div id = "guide">
+    <h2>Result guide :</h2>
+<p>Underweight = less than 18.6 </p>
+<p>Normal range : 18.6-24.9 </p>
+<p>Overweight : More than 24.9 </p>
+
+</div>
+
+</form>
+      </div>
+    <style>
+
+ .container{
+    margin: 20px;
+    border-width : 2px solid black;
+    display:inline-table;
+    border-radius: 2px;
+    border: 0.1px solid black;
+    padding: 20px;
+    font-family: 'Franklin Gothic Medium';
+    
+
+}  
+ 
+ body{
+    background-color: pink;
+ }
+#button{
+    background-color:mistyrose;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: larger;
+    color: black;
+}   
+
+#result{
+    color: purple;
+}
+    </style>
+      <script>
+    
+    let form = document.querySelector('form')
+
+    form.addEventListener('submit',(e)=>{
+       e.preventDefault();
+
+     let height =   parseInt(document.querySelector('#height').value)
+     let weight =   parseInt(document.querySelector('#weight').value)
+     let result =   document.querySelector('#result')
+
+     if(height === height <= 0 || isNaN(height) ){
+    result.innerHTML = `Please give valid height ${height}`
+     }
+     else if(weight === weight <= 0 || isNaN(weight) ){
+    result.innerHTML = `Please give valid weight ${weight}`
+     }
+     else{
+     let bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+             result.innerHTML = `<span>${bmi}</span>`
+     }
+
+    })
+
+
+
+
+      </script>
+</body>
+</html>
