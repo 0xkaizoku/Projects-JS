@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+</head>
+<body>
+    
+<div class="center">
+    <div>
+        <div id="banner"><span>Your local time</span></div>
+        <div id="clock"></div>
+    </div>
+</div>
+
+<script>
+    let clock = document.getElementById('clock');
+
+    setInterval(() => {
+        let date = new Date();
+        clock.innerHTML = date.toLocaleTimeString();
+    }, 1000);
+</script>
+
+<style>
+    /* Center the clock and banner vertically and horizontally */
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: rgb(255, 199, 199);
+    }
+
+    .center {
+        text-align: center;
+        display: inline-block;
+        border: 2px solid rgb(88, 69, 69);
+        padding: 5px;
+    }
+
+    #banner {
+        font-size: 24px;
+        margin-bottom: 20px;
+    
+        
+    }
+
+    #clock {
+        font-size: 36px;
+        font-weight: bold;
+       
+        
+    }
+</style>
+
+</body>
+</html>
