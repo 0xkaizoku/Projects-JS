@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clock</title>
 </head>
 <body>
-    
+    <div id="center">
+        <span>Your local time</span>
+        <div id="clock"></div>
+        
+        <br>
+        <span>Your local date</span>
+        <div id="dates"></div>
+    </div>
+
+    <script>
+    let clock = document.querySelector('#clock');
+    let dates = document.querySelector('#dates');
+    setInterval(() => {
+        let date = new Date();
+        clock.innerHTML = date.toLocaleTimeString();
+        dates.innerHTML = date.toLocaleDateString()
+    }, 1000);
+    </script>
+
+    <style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Vertically center */
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background-color:thistle;
+    }
+
+    #center {
+        text-align: center;
+        border: 1px solid slategray;
+        padding: 10px;
+        background-color: gold;
+    }
+
+    #clock {
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 10px;
+        
+      
+    }
+    #dates{
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    </style>
 </body>
 </html>
