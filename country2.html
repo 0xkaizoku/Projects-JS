@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country info generator</title>
+</head>
+<body>
+
+
+    <div class="box">
+        <h1>Enter country name to get info about it</h1>
+        <form>
+
+     <p><label>Enter country name : </label><input type="text" id="input"></p>
+     <button id="btn">Get info</button>
+     <br>
+     <br>
+     <div id="result"></div>
+     <br>
+     <br>
+     <br>
+     <br>
+<!-- <p>Sorry for bad css, still learning :/</p> -->
+
+        </form>
+    </div>
+    
+    <script>
+
+
+const input = document.querySelector('#input');
+const button = document.querySelector('#btn');
+const result = document.querySelector('#result');
+
+
+const apiURL = 'https://api.api-ninjas.com/v1/country?name='
+const apiKey = '5Jwc01O67KVsqY1oWm3ygQ==TdT6RWt5EMXZZpGI'
+
+
+const options = {
+    method : "GET",
+    headers : {
+        "X-Api-Key" : apiKey,
+    },
+};
+async function getName(){
+
+    const name = input.value;
+    const response = await fetch(apiURL+name,options)
+    const data = await response.json()
+
+    if(data.length>0){
+
+     result.innerHTML = `
+     
+      <span> Name : ${data[0].name}</span><br>
+      <span> Capital : ${data[0].capital}</span><br>
+     <span> Currency : ${data[0].currency.name}</span><br>
+       <span> GDP : ${data[0].gdp}</span><br>
+      <span> GDP per capita : ${data[0].gdp_per_capita}</span><br>
+      <span> GDP Growth : ${data[0].gdp_growth}%</span><br>
+
+     
+     `
+
+    }
+    else if(data.length <= 0){
+        result.innerHTML = `<span>Invalid entry,check for any typo</span>`
+    }
+    else{
+        result.innerHTML = `<span>Invalid entry,check for any typo</span>`
+    }
+
+}
+
+button.addEventListener('click',(e)=>{
+    e.preventDefault()
+    getName()
+})
+
+
+    </script>
+
+    <style>
+
+html,body{
+    width: 80%;
+    margin: 0;
+    background: linear-gradient(to left top,lightpink,lightblue,lightpink);
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.box{
+    display: inline-block;
+    box-shadow: 10px 5px 5px purple;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    border: 1px solid black;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    
+}
+#input{
+    box-shadow: 1px 2px 5px black;
+    margin: 10px;
+    padding-left: 4px;
+    font-family: 'Verdana', Verdana, sans-serif;
+
+   
+}
+
+#btn{
+   
+   background-color: rgb(188, 255, 255);
+   color: rgb(0, 45, 14);
+   font-size: larger;
+   padding: 5px;
+   border-radius: 5px;
+}
+#btn:hover{
+    background: linear-gradient(to left bottom,rgb(237, 211, 211),rgb(207, 207, 234),rgb(255, 191, 191));
+    background-color: rgba(0,0,0,0.3);
+    box-shadow: 5px 3px 4px rgba(0,0,0,0.3);
+    transition: all 300ms ease;
+    cursor: pointer;
+}
+    </style>
+    
+</body>
+</html>
