@@ -27,59 +27,60 @@
     </div>
     
     <script>
+        const input = document.querySelector('#input');
+        const button = document.querySelector('#btn');
+        const result = document.querySelector('#result');
 
+        const apiURL = 'https://api.api-ninjas.com/v1/country?name=';
+        const apiKey = '5Jwc01O67KVsqY1oWm3ygQ==TdT6RWt5EMXZZpGI';
 
-const input = document.querySelector('#input');
-const button = document.querySelector('#btn');
-const result = document.querySelector('#result');
+        const options = {
+            method: "GET",
+            headers: {
+                "X-Api-Key": apiKey,
+            },
+        };
 
+        async function getName() {
+            const name = input.value.trim();  // Trim white spaces from input
+            result.innerHTML = ""; // Clear result before fetching new data
 
-const apiURL = 'https://api.api-ninjas.com/v1/country?name='
-const apiKey = '5Jwc01O67KVsqY1oWm3ygQ==TdT6RWt5EMXZZpGI'
+            if (!name) {
+                result.innerHTML = `<span>Please enter a valid country name.</span>`;
+                return;
+            }
 
+            try {
+                const response = await fetch(apiURL + name, options);
+                
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status}`);
+                }
 
-const options = {
-    method : "GET",
-    headers : {
-        "X-Api-Key" : apiKey,
-    },
-};
-async function getName(){
+                const data = await response.json();
 
-    const name = input.value;
-    const response = await fetch(apiURL+name,options)
-    const data = await response.json()
+                if (data.length > 0) {
+                    result.innerHTML = `
+                        <span>Name: ${data[0].name}</span><br>
+                        <span>Capital: ${data[0].capital}</span><br>
+                        <span>Currency: ${data[0].currency.name}</span><br>
+                        <span>GDP: ${data[0].gdp}</span><br>
+                        <span>GDP per capita: ${data[0].gdp_per_capita}</span><br>
+                        <span>GDP Growth: ${data[0].gdp_growth}%</span><br>
+                    `;
+                } else {
+                    result.innerHTML = `<span>No data found for the country "${name}". Check for any typos.</span>`;
+                }
 
-    if(data.length>0){
+            } catch (error) {
+                result.innerHTML = `<span>There was an error fetching data: ${error.message}</span>`;
+            }
+        }
 
-     result.innerHTML = `
-     
-      <span> Name : ${data[0].name}</span><br>
-      <span> Capital : ${data[0].capital}</span><br>
-     <span> Currency : ${data[0].currency.name}</span><br>
-       <span> GDP : ${data[0].gdp}</span><br>
-      <span> GDP per capita : ${data[0].gdp_per_capita}</span><br>
-      <span> GDP Growth : ${data[0].gdp_growth}%</span><br>
-
-     
-     `
-
-    }
-    else if(data.length <= 0){
-        result.innerHTML = `<span>Invalid entry,check for any typo</span>`
-    }
-    else{
-        result.innerHTML = `<span>Invalid entry,check for any typo</span>`
-    }
-
-}
-
-button.addEventListener('click',(e)=>{
-    e.preventDefault()
-    getName()
-})
-
-
+        button.addEventListener('click', (e) => {
+            e.preventDefault();  // Prevent form submission or page reload
+            getName();
+        });
     </script>
 
     <style>
