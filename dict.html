@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English dictionary</title>
+</head>
+<body>
+    
+<div class="container">
+
+<h1 id="heading">English dictionary</h1>
+<p><label for="Enter word"><input placeholder="Search a word" type="text" id="input" class="input"></label></p>
+<p id="info" class="info">Type a word and press enter</p>
+<div class="meaning-box" id="meaning-box">
+
+<p id="title" class = "title">Word title : <span>____</span></p>
+<p id="meaning" class = "meaning">Meaning : <span>____</span></p>
+<audio src="" controls id="audio"></audio>
+
+</div>
+
+</div>
+
+<style>
+
+body{
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: lightpink;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+
+}
+
+.container{
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.3);
+    box-shadow: 0  10px 10px rgba(0,0,0,0.3);
+    width: 80%;
+    margin: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#heading{
+    font-size: 28px;
+
+}
+.input{
+    height: 30px;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(0,0,0,0.3);
+    font-size: 16px;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.meaning-box{
+    display: none;
+}
+
+
+
+</style>
+
+
+<script>
+
+const inputs = document.querySelector('.input');
+const title = document.querySelector('.title');
+const info = document.querySelector('.info');
+const meaning_box = document.querySelector('.meaning-box');
+const meaning = document.querySelector('.meaning');
+
+
+
+
+
+
+async function fetchAPI(word){
+
+    try {
+        info.style.display = 'block';
+        meaning_box.style.display = 'block';
+        info.innerText = `Searching for ${word}...`
+     
+        const apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    
+    const result = await fetch(apiURL).then((res)=> res.json())
+    info.style.display = 'none';
+        title.innerText = result[0].word
+        meaning.innerText = result[0].meaning[0]
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+
+
+
+}
+
+inputs.addEventListener('keyup',(e)=>{
+    if(e.target.value && e.key === "Enter"){
+        fetchAPI(e.target.value)
+    }
+})
+
+</script>
+
+</body>
+</html>
