@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart trail animation</title>
+    <style>
+
+    body{
+        margin: 0;
+        background-color: black;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .heart {
+        background: url("https://cdn2.iconfinder.com/data/icons/free-version/128/almaz-512.png");
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-size: cover;
+        pointer-events: none;
+        animation: animate 2s linear forwards;
+    }
+
+    @keyframes animate {
+        0%{
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        100%{
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+    }
+    
+    </style>
+</head>
+<body>
+    
+<script>
+
+const body = document.querySelector("body");
+
+body.addEventListener('mousemove', (move) => {
+    const xPos = move.pageX;  // Use pageX/pageY for global coordinates
+    const yPos = move.pageY;
+    
+    const span = document.createElement('span');  // Create new span element
+    span.classList.add('heart');  // Add heart class for styles
+    span.style.left = xPos + "px";
+    span.style.top = yPos + "px";
+    
+    const size = Math.random() * 50 + 50;  // Random size between 50px and 100px
+    span.style.width = size + "px";
+    span.style.height = size + "px";
+    
+    body.appendChild(span);
+
+    // Remove the span after animation ends (2 seconds)
+    setTimeout(() => {
+        span.remove();
+    }, 2000);
+});
+
+</script>
+</body>
+</html>
