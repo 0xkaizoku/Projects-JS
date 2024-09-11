@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto price tracker</title>
+</head>
+<body>
+    <div class="box">
+
+
+<form>
+
+<h1>Put trading pair to get the price</h1>
+<p><label>Enter trading pair : </label><input type="text" id="input"></p>
+<button class="btn">Get</button>
+<div id="result">Price is : </div>
+
+
+</form>
+
+
+    </div>
+
+
+    <script>
+
+        const input = document.querySelector('#input');
+        const result = document.querySelector('#result');
+        const button = document.querySelector('.btn');
+
+const apiKey = "5Jwc01O67KVsqY1oWm3ygQ==TdT6RWt5EMXZZpGI"
+const apiURL = 'https://api.api-ninjas.com/v1/cryptoprice?symbol='
+
+const options = {
+    method : "GET",
+    headers : {
+        "X-Api-Key": apiKey,
+    },
+
+};
+
+async function getPrice (){
+    const name = input.value;
+    const response = await fetch(apiURL+name,options);
+    const data = await response.json();
+    return data; //by gpt
+}
+
+button.addEventListener("click",async (e)=>{
+e.preventDefault();
+const data = await getPrice() //by gpt
+if(data){
+ result.innerHTML = `<span>Current price is ${data.price}</span>`
+}
+else {
+    result.innerHTML = `<span> error, please try again</span>`
+}
+})
+
+    </script>
+</body>
+</html>
