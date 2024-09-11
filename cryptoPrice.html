@@ -14,6 +14,8 @@
 <h1>Put trading pair to get the price</h1>
 <p><label>Enter trading pair : </label><input type="text" id="input"></p>
 <button class="btn">Get</button>
+<br>
+<br>
 <div id="result">Price is : </div>
 
 
@@ -51,7 +53,7 @@ button.addEventListener("click",async (e)=>{
 e.preventDefault();
 const data = await getPrice() //by gpt
 if(data){
- result.innerHTML = `<span>Current price is ${data.price}</span>`
+ result.innerHTML = `<span>Current price is $${data.price}</span>`
 }
 else {
     result.innerHTML = `<span> error, please try again</span>`
@@ -59,5 +61,48 @@ else {
 })
 
     </script>
+
+
+<style>
+
+body,html{
+    margin: 0;
+    background-color: lightpink;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.box{
+ 
+      display: inline-block;
+     border-radius: 10px;
+      border: 1px solid black;  
+     padding :4px;
+     box-sizing: border-box;
+     margin-top: 300px;
+     font-size: larger;
+     font-weight: 700;
+    color: rgb(255, 0, 0);
+    box-shadow: argb(255, 255, 255,0.3);
+    background-color: ;
+}
+
+.btn{
+    border-radius: 10px;
+    font-size: larger;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-shadow: argb(255, 255, 255,0.3);
+    
+}
+p{
+    color: rgb(255, 0, 111);
+}
+
+
+
+</style>
 </body>
 </html>
