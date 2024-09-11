@@ -12,11 +12,13 @@
 <form>
 
 <h1>Put trading pair to get the price</h1>
-<p><label>Enter trading pair : </label><input type="text" id="input"></p>
+<p>Enter trading pair : <label></label><input type="text" id="input" placeholder="Any popular pair"></p>
 <button class="btn">Get</button>
 <br>
 <br>
 <div id="result"></div>
+<div id="result2"></div>
+<div id="other"></div>
 
 
 </form>
@@ -29,7 +31,9 @@
 
         const input = document.querySelector('#input');
         const result = document.querySelector('#result');
+        const result2 = document.querySelector('#result2');
         const button = document.querySelector('.btn');
+        const other = document.querySelector('#other');
 
 const apiKey = "5Jwc01O67KVsqY1oWm3ygQ==TdT6RWt5EMXZZpGI"
 const apiURL = 'https://api.api-ninjas.com/v1/cryptoprice?symbol='
@@ -43,6 +47,9 @@ const options = {
 };
 
 async function getPrice (){
+    result.innerHTML = "";
+    result2.innerHTML = "";
+    other.innerHTML = "";
     const name = input.value;
     const response = await fetch(apiURL+name,options);
     const data = await response.json();
@@ -52,9 +59,22 @@ async function getPrice (){
 button.addEventListener("click",async (e)=>{
 e.preventDefault();
 const data = await getPrice() //by gpt
-if(data){
- result.innerHTML = `<span>Current price is : $${data.price}</span>`
+
+
+if(data && data.price){
+ result.innerHTML = `<span>Current price of ${input.value} : ${data.price}</span>`
  result.style.color = 'green'
+ setTimeout(()=>{
+    other.innerHTML = `<span>Try other pairs as well</span>`
+     
+ },3000)
+  result2.innerHTML = `<span>(Above prices are respective to their usdt and btc pair)</span>`
+  result2.style.color = 'black'
+  button.disabled = true;
+ 
+  input.value =  '';
+  button.disabled = false;
+
 }
 else {
     result.innerHTML = `<span> error, please try again</span>`
@@ -68,7 +88,7 @@ else {
 
 body,html{
     margin: 0;
-    background-color: lightpink;
+    background: linear-gradient(to right bottom,  rgb(221, 255, 182),lightblue,lightpink);
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -86,7 +106,7 @@ body,html{
      margin-top: 300px;
      font-size: larger;
      font-weight: 700;
-    color: rgb(35, 178, 255);
+    color: rgb(255, 0, 255);
    
     background: argb(255, 255, 255,0.4)
 }
