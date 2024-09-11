@@ -16,7 +16,7 @@
 <button class="btn">Get</button>
 <br>
 <br>
-<div id="result">Price is : </div>
+<div id="result"></div>
 
 
 </form>
@@ -53,7 +53,8 @@ button.addEventListener("click",async (e)=>{
 e.preventDefault();
 const data = await getPrice() //by gpt
 if(data){
- result.innerHTML = `<span>Current price is $${data.price}</span>`
+ result.innerHTML = `<span>Current price is : $${data.price}</span>`
+ result.style.color = 'green'
 }
 else {
     result.innerHTML = `<span> error, please try again</span>`
@@ -85,20 +86,24 @@ body,html{
      margin-top: 300px;
      font-size: larger;
      font-weight: 700;
-    color: rgb(255, 0, 0);
-    box-shadow: argb(255, 255, 255,0.3);
-    background-color: ;
+    color: rgb(35, 178, 255);
+   
+    background: argb(255, 255, 255,0.4)
 }
 
 .btn{
     border-radius: 10px;
     font-size: larger;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    box-shadow: argb(255, 255, 255,0.3);
+    background-color: argb(2, 55, 255,0.3);
     
 }
 p{
     color: rgb(255, 0, 111);
+}
+
+h1{
+    color: rgb(3, 1, 1);
 }
 
 
