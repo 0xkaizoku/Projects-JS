@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo generator</title>
+</head>
+<body>
+    
+<div class="box">
+
+
+<form>
+
+<h1>Enter company name</h1>
+<p><label>Name : </label><input type="text" id="input" placeholder="Company name"></p>
+<button class="btn">get</button>
+<div class="result"></div>
+<div class="img"></div>
+
+
+</form>
+
+</div>
+
+
+<script>
+
+
+const input = document.querySelector('#input');
+const result = document.querySelector('.result');
+const button = document.querySelector('.btn')
+const image = document.querySelector('.img')
+
+const apiKey = "5Jwc01O67KVsqY1oWm3ygQ==TdT6RWt5EMXZZpGI"
+const apiURL = 'https://api.api-ninjas.com/v1/logo?name='
+
+
+const options = {
+
+method : "GET",
+headers : {
+    "X-Api-Key": apiKey,
+},
+
+
+}
+
+async function getLogo(){
+
+ const name = input.value;
+ const response = await fetch(apiURL+name,options);
+ const data = await response.json();
+ return data;
+ console.log(data);
+ 
+
+}
+
+button.addEventListener("click",async (e)=>{
+    e.preventDefault()
+
+    const data = await getLogo();
+
+if(data){
+    result.innerHTML = `<span> Name : ${data[0].name} </span><br>
+                          <span> Ticker : ${data[0].ticker} </span><br>
+                        
+                          `
+                          image.innerHTML = `<img src="${data[0].image}" alt="Company Logo" class = "yo">`;
+
+}
+else{
+    result.innerHTML = `Error, try again`
+}
+
+
+})
+
+
+</script>
+
+<style>
+
+.yo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain; /* This ensures the image scales properly */
+}
+
+
+</style>
+
+
+</body>
+</html>
