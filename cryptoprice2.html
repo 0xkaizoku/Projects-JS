@@ -53,14 +53,20 @@ button.addEventListener('click',async (e)=>{
 
 e.preventDefault()
  
-input.value = ""
+
 result.innerHTML = ""
 result2.innerHTML = ""
+
 
 const data = await getPrice();
 
 if(data && data.price){
-    result.innerHTML = `<span>Price is ${data.price}</span>`
+    result.innerHTML = `<span>Price is ${data.price}</span>`;
+input.value = ""
+
+setTimeout(()=>{
+        result2.innerHTML = `<span>The price are respective to their pair</span>`;
+},1500)
 
 }
 
