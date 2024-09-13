@@ -32,7 +32,6 @@
 </div>
 
 <style>
-
 *{
     padding: 0;
     margin: 0;
@@ -54,7 +53,24 @@ body{
     flex: 1;
 }
 
-.hex button, .rgbButton, .copy-hex, .copy-rgb {
+.hex {
+    background-color: aqua;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.hex-value{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.hex button, .copy-hex {
     padding: 12px 20px;
     cursor: pointer;
     font-size: 18px;
@@ -62,47 +78,52 @@ body{
     background-color: aliceblue;
     border: 2px solid transparent;
     transition: background-color 0.3s, border-color 0.3s;
-}
-
-.copy-hex, .copy-rgb {
-    background-color: lightgreen;
-    color: black;
-    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
 }
 
-.copy-hex:hover, .copy-rgb:hover {
+.copy-hex {
+    background-color: lightgreen;
+    color: black;
+}
+
+.copy-hex:hover {
     background-color: green;
     color: white;
     border-color: white;
-}
-
-.hex-value{
-    font-size: 30px;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.rgb{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.hex{
-    background-color: aqua;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .rgb {
     background-color: rgb(255, 182, 182);
     padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 8px;
+}
+
+.rgbButton, .copy-rgb {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: aliceblue;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.copy-rgb {
+    background-color: lightgreen;
+    color: black;
+}
+
+.copy-rgb:hover {
+    background-color: green;
+    color: white;
+    border-color: white;
 }
 
 </style>
