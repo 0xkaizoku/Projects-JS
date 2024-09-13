@@ -8,38 +8,27 @@
 <body>
     
 <div class="random">
-<div class="hex">
-    <p class="hex-value">#ffffff</p>
-    <button class="hexButton">Create Hex color</button>
-    <button class="copy-hex" >Copy to clipboard</button>
-</div>
-<div class="rgb">
-
-    <div><label for="red">Red</label>
-        <input type = "range"
-        min = "0"
-        max = "255"
-        value = "0"
-        id = "red"></div>
-<div><label for="green">Green</label>
-    <input type = "range"
-    min = "0"
-    max = "255"
-    value = "0"
-    id = "green"></div>
-
- <div>    <label for="blue">Blue</label>
-    <input type = "range"
-    min = "0"
-    max = "255"
-    value = "0"
-    id = "blue"></div>
-
-    <button class="rgbButton">Create RGB color</button>
-    <button class="copy-rgb" >Copy to clipboard</button>
-</div>
-
-
+    <div class="hex">
+        <p class="hex-value">#ffffff</p>
+        <button class="hexButton">Create Hex color</button>
+        <button class="copy-hex">Copy to clipboard</button>
+    </div>
+    <div class="rgb">
+        <div>
+            <label for="red">Red</label>
+            <input type="range" min="0" max="255" value="0" id="red">
+        </div>
+        <div>
+            <label for="green">Green</label>
+            <input type="range" min="0" max="255" value="0" id="green">
+        </div>
+        <div>
+            <label for="blue">Blue</label>
+            <input type="range" min="0" max="255" value="0" id="blue">
+        </div>
+        <button class="rgbButton">Create RGB color</button>
+        <button class="copy-rgb">Copy to clipboard</button>
+    </div>
 </div>
 
 <style>
@@ -52,43 +41,55 @@
 
 body{
     padding: 20px;
-    font-size : 20px;
+    font-size: 20px;
 }
 
 .random{
     display: flex;
     gap: 10px;
-
 }
 
 .hex, .rgb {
     min-height: 100vh;
     flex: 1;
 }
-.hex button {
+
+.hex button, .rgbButton, .copy-hex, .copy-rgb {
     padding: 12px 20px;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
     background-color: aliceblue;
-    flex-direction: column;
-    gap: 30px;
-
+    border: 2px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
 }
+
+.copy-hex, .copy-rgb {
+    background-color: lightgreen;
+    color: black;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.copy-hex:hover, .copy-rgb:hover {
+    background-color: green;
+    color: white;
+    border-color: white;
+}
+
 .hex-value{
     font-size: 30px;
     font-weight: bold;
-    color : #ffffff;
+    color: #ffffff;
 }
 
 .rgb{
     display: flex;
     flex-direction: column;
-    gap : 20px;
+    gap: 20px;
 }
 
 .hex{
-
     background-color: aqua;
     padding: 20px;
     display: flex;
@@ -103,25 +104,15 @@ body{
     justify-content: center;
     align-items: center;
 }
-.rgbButton{
-    padding: 12px 20px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: aliceblue;
-    flex-direction: column;
-    gap: 30px;
-
-}
 
 </style>
-
 
 <script>
 
 const hexButton = document.querySelector('.hexButton');
 const hexColorValue = document.querySelector('.hex-value');
 const hexContainer = document.querySelector('.hex');
+const hexCopy = document.querySelector('.copy-hex');
 
 hexButton.addEventListener('click', () => {
     const charSet = "0123456789ABCDEF";
@@ -133,27 +124,41 @@ hexButton.addEventListener('click', () => {
 
     hexColorValue.textContent = `#${hexColorOutput}`;
 
-    hexContainer.style.backgroundColor =`#${hexColorOutput}`;
+    hexContainer.style.backgroundColor = `#${hexColorOutput}`;
     hexButton.style.color = `#${hexColorOutput}`;
 });
 
+// Copy Hex color to clipboard
+hexCopy.addEventListener('click', () => {
+    const hexValue = hexColorValue.textContent;
+    navigator.clipboard.writeText(hexValue).then(() => {
+        alert(`Hex color ${hexValue} copied to clipboard!`);
+    });
+});
 
 const rgbButton = document.querySelector('.rgbButton');
-const redRange = document.querySelector('#red')
-const greenRange = document.querySelector('#green')
-const blueRange = document.querySelector('#blue')
-const rgbColorContainer = document.querySelector('.rgb')
+const redRange = document.querySelector('#red');
+const greenRange = document.querySelector('#green');
+const blueRange = document.querySelector('#blue');
+const rgbColorContainer = document.querySelector('.rgb');
+const rgbCopy = document.querySelector('.copy-rgb');
 
-rgbButton.addEventListener('click',()=>{
+rgbButton.addEventListener('click', () => {
+    const extractRedValue = redRange.value;
+    const extractGreenValue = greenRange.value;
+    const extractBlueValue = blueRange.value;
 
-const extractRedValue = redRange.value;
-const extractGreenValue = greenRange.value;
-const extractBlueValue = blueRange.value;
+    rgbColorContainer.style.backgroundColor = `rgb(${extractRedValue},${extractGreenValue},${extractBlueValue})`;
+    rgbButton.style.color = `rgb(${extractRedValue},${extractGreenValue},${extractBlueValue})`;
+});
 
-rgbColorContainer.style.backgroundColor = `rgb(${extractRedValue},${extractGreenValue},${extractBlueValue})`
-rgbButton.style.color = `rgb(${extractRedValue},${extractGreenValue},${extractBlueValue})`
-})
-
+// Copy RGB color to clipboard
+rgbCopy.addEventListener('click', () => {
+    const rgbValue = `rgb(${redRange.value}, ${greenRange.value}, ${blueRange.value})`;
+    navigator.clipboard.writeText(rgbValue).then(() => {
+        alert(`RGB color ${rgbValue} copied to clipboard!`);
+    });
+});
 
 </script>
 
